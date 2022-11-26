@@ -21,6 +21,7 @@ class Rectangle:
 
     def get_diagonal(self) :
         self.diagonal = (self.width ** 2 + self.height ** 2)**.5
+        return self.diagonal
 
     def get_picture(self) :
         int_width = int(self.width)
@@ -36,15 +37,43 @@ class Rectangle:
         return picture_string
 
 
-    def get_amount_inside(self) :
-        pass
+    def get_amount_inside(self, baby_rect) :
+        fitting_widths = self.width / baby_rect.width
+        fitting_heights = self.height / baby_rect.height
+
+        if fitting_widths < 1 or fitting_heights < 1 :
+            return 0
+        else :
+            return int(fitting_widths) * int(fitting_heights)
 
     def __str__(self) :
-        pass
+        return("Rectangle(width=" + str(int(self.width)) + ", height=" + str(int(self.height)) + ")")
 
-class Square:
-    pass
+class Square(Rectangle):
+    def __init__(self, length):
+        self.width = float(length)
+        self.height = float(length)
 
-rect = Rectangle(4, 14)
+    def __str__(self) :
+        return("Square(side=" + str(int(self.width)) + ")")
 
-print(rect.get_picture())
+    
+    def set_side(self, length) :
+        self.width = float(length)
+        self.height = float(length)
+
+    def set_height(self, length) :
+        set_side(self, length)
+
+    def set_length(self, length) :
+        set_side(self, length)
+
+    
+
+# rect4 = Square(4)
+
+# rect1 = Square(1)
+
+
+
+# print(rect4.get_amount_inside(rect1))
